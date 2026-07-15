@@ -14,8 +14,11 @@ define('FILES_PATH', $root . 'transaction_files' . DIRECTORY_SEPARATOR);
 ##\Learn_PHP_TUT_PROJECT\views\
 define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
 
+define('HELPERS_PATH', $root . 'helpers' . DIRECTORY_SEPARATOR);
+
 //get app.php using require
 require APP_PATH . "app.php";
+require HELPERS_PATH . "helpers.php";
 
 //calling Business fuc:getTransaction file Transactions.csv 
 $files = getTransactionFiles(FILES_PATH);
@@ -25,6 +28,8 @@ foreach ($files as $file) {
     $transactions = array_merge($transactions, getTransactions($file));
 
 }
+
+$totals = calculateTotals($transactions);
 //getting View 
 require VIEWS_PATH . 'transactions.php';
 

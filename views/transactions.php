@@ -44,10 +44,10 @@
                 <?php //Looping each columns in transacations ?>
                 <?php foreach ($transactions as $transaction): ?>
                     <tr>
-                        <td><?= $transaction[0] ?></td>
-                        <td><?= $transaction[1] ?></td>
-                        <td><?= $transaction[2] ?></td>
-                        <td><?= $transaction[3] ?></td>
+                        <td><?= formatDate($transaction['date']) ?></td>
+                        <td><?= $transaction['checkNumber'] ?></td>
+                        <td><?= $transaction['description'] ?></td>
+                        <td><?= formatDollarAmount($transaction['amount']) ?></td>
                     </tr>
                 <?php endforeach ?>
             <?php endif ?>
@@ -56,15 +56,15 @@
         <tfoot>
             <tr>
                 <th colspan="3">Total Income:</th>
-                <td></td>
+                <td><?= formatDollarAmount($totals['totalIncome'] ?? 0) ?></td>
             </tr>
             <tr>
                 <th colspan="3">Total Expense:</th>
-                <td></td>
+                <td><?= formatDollarAmount($totals['totalExpense'] ?? 0) ?></td>
             </tr>
             <tr>
                 <th colspan="3">Net Total:</th>
-                <td></td>
+                <td><?= formatDollarAmount($totals['netTotal'] ?? 0) ?></td>
             </tr>
         </tfoot>
     </table>
